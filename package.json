@@ -1,0 +1,32 @@
+{
+  "name": "simple-express-app",
+  "version": "1.0.0",
+  "description": "This simple express web application provides simple scaffolding for an express app and includes the ability to automate deployment to Azure",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pjsummersjr/simple-express-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pjsummersjr/simple-express-app/issues"
+  },
+  "homepage": "https://github.com/pjsummersjr/simple-express-app#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "browserify": "^16.2.2",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "tsify": "^4.0.0",
+    "typescript": "^3.0.3",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}
