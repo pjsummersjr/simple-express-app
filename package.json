@@ -4,6 +4,7 @@
   "description": "This simple express web application provides simple scaffolding for an express app and includes the ability to automate deployment to Azure",
   "main": "gulpfile.js",
   "scripts": {
+    "start": "node dist\\server.js", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
