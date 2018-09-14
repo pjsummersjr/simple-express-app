@@ -11,7 +11,7 @@ app.use(express.static(staticPath));
 console.log(`Static files being loaded from here: ${staticPath}`)
 
 app.get('/', (req, res) => {
-    res.send(`Listening on port ${port} and using API KEY: ${apiKey}`);
+    res.json({"value":[{"id":1},{"id":2}]});
 });
 
 app.listen(port, () => {
