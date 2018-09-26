@@ -11,23 +11,35 @@ var webpack = require('webpack')
 var tsProject = ts.createProject("tsconfig.json");
 
 gulp.task("default", ["web-files","server"]);
-
+/**
+ * This builds the server component
+ */
 gulp.task("server", function () {
     return tsProject.src()
         .pipe(tsProject())
         .js.pipe(gulp.dest("dist"));
 });
-
+/**
+ * Copies html files from source to destination folder
+ */
 gulp.task("copy-html", function() {
     return watch("src/web/*.html", {ignoreInitial: false})
         .pipe(gulp.dest("dist/web"));
 });
-
+/**
+ * Copies the adal.js file from src to the destination folder
+ */
 gulp.task("copy-js", function() {
     return gulp.src("src/web/scripts/adal.js")
         .pipe(gulp.dest("dist/web/scripts"));
 });
-
+/**
+ * Uses webpack to build the Javascript file
+ * It doesn't have any built-in dependencies. The primary external dependency is adal.js which
+ * I am bringing in via a script tag in the HTML file
+ * 
+ * TODO: Externalize webpack configuration
+ */
 gulp.task("build-js", function(){
     
     return gulp.src("src/web/scripts/app.js")
@@ -46,5 +58,7 @@ gulp.task("build-js", function(){
         }, webpack))  
         .pipe(gulp.dest("dist/web/scripts"));
 })
-
+/**
+ * Handles the build,copy,etc. of all web client app files
+ */
 gulp.task("web-files", ["copy-html", "copy-js","build-js"]);
