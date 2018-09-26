@@ -41,9 +41,16 @@ gulp.task("copy-js", function() {
  * TODO: Externalize webpack configuration
  */
 gulp.task("build-js", function(){
-    
+    var watchVal = false;
+    var modeVal = 'production';
+    if(process.env.NODE_ENV==='development'){
+        watchVal = true;
+        modeVal = 'development';
+    }
+
     return gulp.src("src/web/scripts/app.js")
         .pipe(gulpWebpack({
+            mode:modeVal,
             output: {
                 path: path.join(__dirname, 'dest', 'web', 'scripts'),
                 filename: 'app.js'
@@ -54,7 +61,7 @@ gulp.task("build-js", function(){
                     { test: /\.js$/,  loader: 'babel-loader'}
                 ]
             },
-            watch:true
+            watch:watchVal
         }, webpack))  
         .pipe(gulp.dest("dist/web/scripts"));
 })
