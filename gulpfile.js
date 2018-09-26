@@ -7,8 +7,11 @@ var watch = require("gulp-watch");
 var gulpWebpack = require("gulp-webpack");
 var path = require('path');
 var webpack = require('webpack')
+var log = require('fancy-log');
 
 var tsProject = ts.createProject("tsconfig.json");
+
+var env = process.argv[2].split('=')[1]
 
 gulp.task("default", ["web-files","server"]);
 /**
@@ -16,6 +19,9 @@ gulp.task("default", ["web-files","server"]);
  */
 gulp.task("server", function () {
     return tsProject.src()
+        .on('end', function(){
+            //log(`Arg: ${env}`);
+        })
         .pipe(tsProject())
         .js.pipe(gulp.dest("dist"));
 });
@@ -23,7 +29,7 @@ gulp.task("server", function () {
  * Copies html files from source to destination folder
  */
 gulp.task("copy-html", function() {
-    return watch("src/web/*.html", {ignoreInitial: false})
+    return gulp.src("src/web/*.html")
         .pipe(gulp.dest("dist/web"));
 });
 /**
@@ -43,12 +49,15 @@ gulp.task("copy-js", function() {
 gulp.task("build-js", function(){
     var watchVal = false;
     var modeVal = 'production';
-    if(process.env.NODE_ENV==='development'){
+    if(env==='development'){
         watchVal = true;
         modeVal = 'development';
     }
-
     return gulp.src("src/web/scripts/app.js")
+        .on('end', function(){
+            log(`Mode: ${modeVal}`);
+            log(`Watch: ${watchVal}`);
+        })
         .pipe(gulpWebpack({
             mode:modeVal,
             output: {
