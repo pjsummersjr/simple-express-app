@@ -12,7 +12,6 @@ var isCallback = authContext.isCallback(window.location.hash);
 authContext.handleWindowCallback();
 
 if(isCallback && !authContext.getLoginError()){
-    console.log('Is a callback');
     window.location = authContext._getItem(authContext.CONSTANTS.STORAGE.LOGIN_REQUEST);
 }
 
