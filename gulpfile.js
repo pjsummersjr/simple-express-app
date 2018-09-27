@@ -11,7 +11,10 @@ var log = require('fancy-log');
 
 var tsProject = ts.createProject("tsconfig.json");
 
-var env = process.argv[2].split('=')[1]
+var env = "production"
+if(process.argv[2]){
+    env = process.argv[2].split('=')[1];
+}
 
 gulp.task("default", ["web-files","server"]);
 /**
