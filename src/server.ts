@@ -12,7 +12,7 @@ console.log(`Static files being loaded from here: ${staticPath}`)
 
 app.get('/api', (req, res) => {
     console.log('API called');
-    res.json({"value":[{"id":1},{"id":2}]});
+    res.json({"value":[{"id":1,"Title":"Alice in Wonderland"},{"id":2,"Title":"Chronicles of Narnia"}]});
 });
 
 app.listen(port, () => {
