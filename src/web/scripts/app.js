@@ -24,13 +24,13 @@ if(user){
 
 function login() {
     console.log('Logging in');
-    document.getElementById('status').innerHTML = "<span>Logging in</span>";
+    document.getElementById('status').innerHTML = "<span>Just logging in</span>";
     authContext.login();
 }
 
 function logout(){
     console.log('Logging out');
-    document.getElementById('status').innerHTML = "<span>Logging out</span>";
+    document.getElementById('status').innerHTML = "<span>Just logging out</span>";
     authContext.logOut();
 }
 
