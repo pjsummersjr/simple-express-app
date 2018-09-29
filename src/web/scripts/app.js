@@ -3,6 +3,7 @@ var config = require('./appConfig.js');
 
 document.getElementById('login').addEventListener("click", login);
 document.getElementById('logout').addEventListener("click", logout);
+document.getElementById('getstuff').addEventListener("click", getstuff);
 
 var authContext = new AuthenticationContext(config);
 
@@ -34,13 +35,18 @@ function logout(){
     authContext.logOut();
 }
 
+function getstuff() {
+
+    document.getElementById("stuff").innerHTML = "<p>You got some stuff</p>";
+}
+
 function loadContent() {
     var req = new XMLHttpRequest();
     req.addEventListener('load', function() {
         document.getElementById('app').innerHTML = this.responseText;
     })
     
-    req.open("GET", "http://localhost:3000/api");
+    req.open("GET", "/api");
     req.send();
 }
 
