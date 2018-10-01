@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/pjsummersjr/simple-express-app#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
