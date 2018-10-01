@@ -12,6 +12,7 @@ console.log(`Static files being loaded from here: ${staticPath}`)
 
 app.get('/api', (req, res) => {
     console.log('API called');
+    console.log('Is there this weird header?' + req.headers["X-MS-TOKEN-AAD-ACCESS-TOKEN"]);
     res.json({"value":[{"id":1,"Title":"Alice in Wonderland"},{"id":2,"Title":"Chronicles of Narnia"}]});
 });
 
