@@ -19,5 +19,3 @@ app.listen(port, () => {
     console.log(`Listening on port 3000 with API key ${apiKey}`);
 });
 
-//Azure AD APP ID: 4712bbca-26b2-418b-ac74-41ce06995dcb
-

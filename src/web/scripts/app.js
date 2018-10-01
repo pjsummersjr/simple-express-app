@@ -3,6 +3,7 @@ var config = require('./appConfig.js');
 
 document.getElementById('login').addEventListener("click", login);
 document.getElementById('logout').addEventListener("click", logout);
+document.getElementById('getstuff').addEventListener("click", getstuff);
 
 var authContext = new AuthenticationContext(config);
 
@@ -24,14 +25,25 @@ if(user){
 
 function login() {
     console.log('Logging in');
-    document.getElementById('status').innerHTML = "<span>Logging in</span>";
+    document.getElementById('status').innerHTML = "<span>Just logging in</span>";
     authContext.login();
 }
 
 function logout(){
     console.log('Logging out');
-    document.getElementById('status').innerHTML = "<span>Logging out</span>";
+    document.getElementById('status').innerHTML = "<span>Just logging out</span>";
     authContext.logOut();
+}
+
+function getstuff() {
+    var r = XMLHttpRequest();
+    r.addEventListener('load', 
+        function() {
+            document.getElementById('stuff') = this.responseText;
+        }
+    )
+
+    document.getElementById("stuff").innerHTML = "<p>You got some stuff</p>";
 }
 
 function loadContent() {
@@ -40,7 +52,7 @@ function loadContent() {
         document.getElementById('app').innerHTML = this.responseText;
     })
     
-    req.open("GET", "http://localhost:3000/api");
+    req.open("GET", "/api");
     req.send();
 }
 
