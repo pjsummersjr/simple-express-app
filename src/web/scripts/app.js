@@ -1,9 +1,10 @@
 
 var config = require('./appConfig.js');
+var apiConfig = require('./apiConfig');
 
 document.getElementById('login').addEventListener("click", login);
 document.getElementById('logout').addEventListener("click", logout);
-document.getElementById('getstuff').addEventListener("click", getstuff);
+document.getElementById('getstuff').addEventListener("click", loadContent);
 
 var authContext = new AuthenticationContext(config);
 
@@ -35,19 +36,30 @@ function logout(){
     authContext.logOut();
 }
 
-function getstuff() {
-
-    document.getElementById("stuff").innerHTML = "<p>You got some stuff</p>";
-}
-
+/**
+ * 
+ */
 function loadContent() {
     var req = new XMLHttpRequest();
-    req.addEventListener('load', function() {
-        document.getElementById('app').innerHTML = this.responseText;
-    })
+    var resourceEndpoint = apiConfig.serviceEndpointUrl + "/api";
     
-    req.open("GET", "/api");
-    req.send();
+    console.log(`Trying to retrieve data from ${resourceEndpoint}`);
+    console.log(`Using app id: ${apiConfig.serviceAppId}`)
+    //Have to use the application id of my API as the resource for the acquireToken call
+    authContext.acquireToken(apiConfig.serviceAppId, function (error, token) { 
+        if(error) {
+            console.log(error);
+        }   
+        var bearerToken = token;
+        req.addEventListener('load', function() {
+            document.getElementById('app').innerHTML = this.responseText;
+        });
+        req.open("GET", resourceEndpoint);
+        req.setRequestHeader("Authorization", "Bearer " + bearerToken);
+        req.setRequestHeader("Content-Type", "application/json");
+        req.setRequestHeader("Cache-Control", "no-cache");
+        req.send();
+    })
 }
 
 
