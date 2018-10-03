@@ -2,10 +2,7 @@ import express from 'express';
 import path from 'path';
 import process from 'process';
 import request from 'request';
-<<<<<<< HEAD
-=======
 import q from 'q';
->>>>>>> server-master
 
 var app = express();
 
@@ -19,22 +16,6 @@ console.log(`Static files being loaded from here: ${staticPath}`)
 
 app.get('/api', (req, res) => {
     console.log('API called');
-<<<<<<< HEAD
-    var options = {
-        url: "https://graph.microsoft.com/v1.0/me/drive/root/children",
-        headers: {
-            "Authorization": "Bearer " + req.headers["X-MS-TOKEN-AAD-ACCESS-TOKEN"],
-            "Content-Type": "application/json"
-        }
-    }
-    request.get(options, function(error, res, body){
-        if(error){
-            throw(error);
-        }
-        console.log(body);
-    })
-    res.json({"value":[{"id":1, "title": "Alice in Wonderland"},{"id":2, "title": "Chronicles of Narnia"}]});
-=======
     
     var expressResponse = res;
 
@@ -60,15 +41,12 @@ app.get('/api', (req, res) => {
             console.error(error);
         }
     );
->>>>>>> server-master
 });
 
 app.listen(port, () => {
     console.log(`Listening on port 3000`);
 });
 
-<<<<<<< HEAD
-=======
 
 function getApiToken(requestToken): Q.Promise<any> {
     var deferred = q.defer();
@@ -106,5 +84,4 @@ function getApiToken(requestToken): Q.Promise<any> {
     )
     return deferred.promise;
 }
->>>>>>> server-master
 
