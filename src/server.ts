@@ -78,7 +78,7 @@ function getApiToken(requestToken): Q.Promise<any> {
                 return deferred.resolve(dataAsJson.access_token);
             }    
             else {
-                return deferred.reject(`Invalid response returned (${res.statusCode}): ${res.message}`);
+                return deferred.reject(`Invalid response returned (${res.statusCode}): ${res.statusMessage}`);
             }        
         }    
     )
